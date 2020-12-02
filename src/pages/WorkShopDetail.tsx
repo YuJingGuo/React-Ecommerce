@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image, Card, Button, Form } from 'react-bootstrap'
 import {
     Link,
-    RouteComponentProps
+    // RouteComponentProps
 } from "react-router-dom";
 import Moment from 'react-moment';
 import WorkShopCard from '../components/WorkShopCard'
@@ -96,7 +96,7 @@ const styles = {
     }
 }
 
-type TParams = { id: string };
+// type TParams = { id: string };
 
 interface WorkShopItem {
     title: string,
@@ -135,7 +135,8 @@ const initUser =  {
 }
    
 
-function WorkShopDetail({ match }: RouteComponentProps<TParams>) { 
+// function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
+function WorkShopDetail(props: any) { 
     const [ workshops, setWorkshops ] = useState([])  
     const [ workshopitem, setWorkshopitem ] = useState<WorkShopItem>(initValue)
     const [ user, setUser ] = useState<User>(initUser)
@@ -143,7 +144,7 @@ function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
 
     useEffect(() => {
         const fetchData = async () => {
-            await fetch(uri + 'workshops/' + match.params.id).then(res => res.json()).then(res => setWorkshopitem(res))
+            await fetch(uri + 'workshops/' + props.match.params.id).then(res => res.json()).then(res => setWorkshopitem(res))
             await fetch(uri + 'users/' + workshopitem.userId).then(res => res.json()).then(res => setUser(res) )
             await fetch(uri + 'workshops').then(res => res.json()).then(res => {    
                 const temp_array = res.filter((el: { category: string; }) => el.category === workshopitem.category);
@@ -151,7 +152,7 @@ function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
             })                                       
         }        
         fetchData();
-    }, [match.params.id, workshopitem.category, workshopitem.userId])    
+    }, [props.match.params.id, workshopitem.category, workshopitem.userId])    
 
     const addCart = () => {        
         let products = [{
@@ -172,7 +173,7 @@ function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({products, total})
         }).then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => props.fetchOrders())
     }
 
     const handleChange = (e: any) => {
@@ -184,7 +185,7 @@ function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
         <Row style={{paddingTop: 100}}>
             <Col md={3}>
                 <Link to="/">
-                    <Image src={process.env.PUBLIC_URL + '/images/Vector.png'}/><span style={styles.arrow_txt}>Natrag</span>
+                    <Image src={process.env.PUBLIC_URL + '/images/Vector.png'} style={{width: 15}}/><span style={styles.arrow_txt}> Back </span>
                 </Link>
             </Col>            
         </Row>
@@ -238,9 +239,9 @@ function WorkShopDetail({ match }: RouteComponentProps<TParams>) {
                     <Col md={4}>
                         <Row>
                             <Col>
-                                <Card style={styles.card_bg}>
+                                <Card style={styles.card_bg} className="mobile-buy-your-ticket">
                                     <Card.Body>
-                                        <Card.Title>Bug Your Ticket</Card.Title>                                        
+                                        <Card.Title>Buy Your Ticket</Card.Title>                                        
                                         <Card.Text>
                                             <span style={styles.card_price}>{workshopitem.price}, 00</span>
                                             <span style={styles.card_title}>EUR</span>

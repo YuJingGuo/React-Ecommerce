@@ -12,3 +12,88 @@ a:hover {
     text-decoration: underline;
     text-decoration-color: #0097CC;
 }
+
+.dropdown-toggle::after {
+    position: absolute;
+    left: 0;
+    top: 50%;    
+}
+.btn-secondary {
+    color: #0097CC !important;
+    background: white !important;
+    border: none !important;
+    padding-left: 25px;
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+    
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+    .mobile_cart_ico_txt {
+        display: none;
+    }
+    .mobile_filter_category_txt {
+        display: none;
+    }
+    .card {
+        flex-direction: row;
+    }
+    .mobile-card-img {
+        height: 100%;
+        object-fit: fill;
+    }
+    .mobile-card-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mobile-cart-btn-txt {
+        display: none;
+    }
+    .mobile-cart-btn-img {
+        display: block !important;
+    }
+    .mobile_add_cart_btn {
+        width: auto !important;
+    }
+    .mobile-card-price {
+        font-size: 20.3px !important;
+    }
+    .mobile-card-price-unit {
+        font-size: 13.5px !important;
+    }
+    .mobile-buy-your-ticket {
+        display: none;
+    }
+    .bm-menu-wrap {
+        width: 100% !important;
+    }
+    .mobile-img-fluid {
+        width: 120px !important;
+    }
+    .mobile-list-group {
+        display: none;
+    }
+    #mobile-category-btn {
+        display: block !important;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+    

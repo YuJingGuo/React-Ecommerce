@@ -32,13 +32,16 @@ const styles = {
 } 
 
 function App() {
-
-  const [isOpen, setIsOpen] = useState(false);  
-  const [ orders, setOrders ] = useState([])
+    
+  const [ orders, setOrders ] = useState([])  
 
   useEffect(() => {
-    fetch(uri + 'orders').then(res => res.json()).then(res => setOrders(res))
+    fetchOrders()
   }, [])
+
+  const fetchOrders = () => {
+    fetch(uri + 'orders').then(res => res.json()).then(res => setOrders(res))
+  }
 
   return (    
         <Router>        
@@ -48,18 +51,21 @@ function App() {
               <Image src={process.env.PUBLIC_URL + "/images/logo.png"} alt=""/>
             </Navbar.Brand>
             <CartPage 
-                isOpen={isOpen}          
+                isOpen={false}          
                 right
                 width={320}
                 orders={orders}
                 noOverlay                         
-                customBurgerIcon={ <div><Image src={process.env.PUBLIC_URL + "/images/eva_shopping-cart-outline.png"} alt="" />{ orders.length > 0 && <span style={styles.notification}></span> }<h6>{orders.length > 0 ? orders.length + ' WorkShops' : 'Cart is Empty'}</h6></div> }      
+                customBurgerIcon={ <div><Image src={process.env.PUBLIC_URL + "/images/eva_shopping-cart-outline.png"} alt="" />{ orders.length > 0 && <span style={styles.notification}></span> }<h6 className="mobile_cart_ico_txt">{orders.length > 0 ? orders.length + ' WorkShops' : 'Cart is Empty'}</h6></div> }      
             />             
           </Navbar>
 
           <Switch>
             <Route path="/" component={Home} exact/>
-            <Route path="/workshops/:id" component={WorkShopDetail} exact/>        
+            {/* <Route path="/workshops/:id" component={WorkShopDetail} exact/> */}
+            <Route path="/workshops/:id" render={(props) => (
+              <WorkShopDetail fetchOrders={fetchOrders} {...props}/>
+            )} exact/>
           </Switch>
           
           <Footer />

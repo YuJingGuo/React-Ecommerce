@@ -41,7 +41,7 @@ function MobileWorkShopCard(props: any) {
         <div className="card">
             <div className="row no-gutters">
                 <div className="col-auto">
-                    <Image src={props.item.products[0].imageUrl} className="img-fluid" alt="" style={styles.card_img}/>
+                    <Image src={props.item.products[0].imageUrl} className="img-fluid mobile-img-fluid" alt="" style={styles.card_img}/>
                 </div>
                 <div className="col">
                     <div className="card-block px-2">

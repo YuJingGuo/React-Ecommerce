@@ -114,7 +114,7 @@ function CartPage(props: any) {
                     {
                         props.orders.map((item: any, index:number) => {
                             totalPrice = totalPrice + item.total
-                            return <div key={index} style={{width: '100%'}}>                                
+                            return <div key={index} style={{width: '100%', padding: 10}}>                                
                                 <MobileWorkShopCard item={item}/>                            
                             </div>
                         })

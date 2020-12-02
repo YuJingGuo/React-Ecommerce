@@ -51,7 +51,9 @@ function WorkShopCard(props: any) {
                     <Col md={4} key={idx} style={{ marginTop: 20, marginBottom: 20 }}>
                         <Link to={`/workshops/${item.id}`}>     
                             <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src={item['imageUrl']} />
+                                <div>
+                                    <Card.Img variant="top" src={item['imageUrl']} className="mobile-card-img"/>
+                                </div>
                                 <Card.Body>                            
                                     <Card.Text style={styles.date}>                                    
                                         <Image src={process.env.PUBLIC_URL + "/images/eva_calendar-outline.png"} alt=""/>
@@ -61,10 +63,15 @@ function WorkShopCard(props: any) {
                                         <Moment format="hh:mm">{item['date']}</Moment>h
                                     </Card.Text>
                                     <Card.Title style={styles.title}>{item['title']}</Card.Title>                                
-                                    <Card.Text style={styles.price}>
-                                        {item['price']},00 <span style={styles.price_unit}>EUR</span>
-                                    </Card.Text>
-                                    <Button style={styles.addCartButton}>Add to cart</Button>
+                                    <div className="mobile-card-bottom">
+                                        <Card.Text style={styles.price} className="mobile-card-price">
+                                            {item['price']},00 <span style={styles.price_unit} className="mobile-card-price-unit">EUR</span>
+                                        </Card.Text>
+                                        <Button style={styles.addCartButton} className="mobile_add_cart_btn">
+                                            <span className="mobile-cart-btn-txt">Add to cart</span>
+                                            <Image className="mobile-cart-btn-img" style={{display: 'none'}} src={process.env.PUBLIC_URL + "/images/eva_shopping-cart-outline.png"} alt="" />
+                                        </Button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Link>
@@ -75,7 +82,9 @@ function WorkShopCard(props: any) {
                         idx < 9&&                     
                         <Link to={`/workshops/${item.id}`}>     
                             <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src={item['imageUrl']} />
+                                <div>
+                                    <Card.Img variant="top" src={item['imageUrl']} className="mobile-card-img"/>
+                                </div>
                                 <Card.Body>                            
                                     <Card.Text style={styles.date}>                                    
                                         <Image src={process.env.PUBLIC_URL + "/images/eva_calendar-outline.png"} alt=""/>
@@ -85,10 +94,15 @@ function WorkShopCard(props: any) {
                                         <Moment format="hh:mm">{item['date']}</Moment>h
                                     </Card.Text>
                                     <Card.Title style={styles.title}>{item['title']}</Card.Title>                                
-                                    <Card.Text style={styles.price}>
-                                        {item['price']},00 <span style={styles.price_unit}>EUR</span>
-                                    </Card.Text>
-                                    <Button style={styles.addCartButton}>Add to cart</Button>
+                                    <div className="mobile-card-bottom">
+                                        <Card.Text style={styles.price} className="mobile-card-price">
+                                            {item['price']},00 <span style={styles.price_unit} className="mobile-card-price-unit">EUR</span>
+                                        </Card.Text>
+                                        <Button style={styles.addCartButton} className="mobile_add_cart_btn">
+                                            <span className="mobile-cart-btn-txt">Add to cart</span>
+                                            <Image className="mobile-cart-btn-img" style={{display: 'none'}} src={process.env.PUBLIC_URL + "/images/eva_shopping-cart-outline.png"} alt="" />
+                                        </Button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Link>
@@ -98,7 +112,9 @@ function WorkShopCard(props: any) {
                     <Col md={4} key={idx} style={{ marginTop: 20, marginBottom: 20 }}>
                         <Link to={`/workshops/${item.id}`}>     
                             <Card style={{ width: '100%' }}>
-                                <Card.Img variant="top" src={item['imageUrl']} />
+                                <div>
+                                    <Card.Img variant="top" src={item['imageUrl']} className="mobile-card-img"/>
+                                </div>
                                 <Card.Body>                            
                                     <Card.Text style={styles.date}>                                    
                                         <Image src={process.env.PUBLIC_URL + "/images/eva_calendar-outline.png"} alt=""/>
@@ -108,10 +124,15 @@ function WorkShopCard(props: any) {
                                         <Moment format="hh:mm">{item['date']}</Moment>h
                                     </Card.Text>
                                     <Card.Title style={styles.title}>{item['title']}</Card.Title>                                
-                                    <Card.Text style={styles.price}>
-                                        {item['price']},00 <span style={styles.price_unit}>EUR</span>
-                                    </Card.Text>
-                                    <Button style={styles.addCartButton}>Add to cart</Button>
+                                    <div className="mobile-card-bottom">
+                                        <Card.Text style={styles.price} className="mobile-card-price">
+                                            {item['price']},00 <span style={styles.price_unit} className="mobile-card-price-unit">EUR</span>
+                                        </Card.Text>
+                                        <Button style={styles.addCartButton} className="mobile_add_cart_btn">
+                                            <span className="mobile-cart-btn-txt">Add to cart</span>
+                                            <Image className="mobile-cart-btn-img" style={{display: 'none'}} src={process.env.PUBLIC_URL + "/images/eva_shopping-cart-outline.png"} alt="" />
+                                        </Button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Link>
