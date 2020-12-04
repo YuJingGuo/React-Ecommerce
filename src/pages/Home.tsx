@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WorkShopCard from '../components/WorkShopCard'
-import { Container, Row, Col, ListGroup, DropdownButton, Dropdown } from 'react-bootstrap'
+import { Container, Row, Col, ListGroup, DropdownButton, Dropdown, Spinner } from 'react-bootstrap'
 
 const uri = "http://localhost:3000/"
 
@@ -38,6 +38,7 @@ function Home() {
   const [ loadmore, setLoadmore ] = useState(false)
   const [ active, setActive ] = useState(5)  
   const [ category, setCategory ] = useState('All')  
+  const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,22 +46,27 @@ function Home() {
       await fetch(uri + 'workshops').then(res => res.json()).then(res => setWorkshops(res))    
     }
     fetchData();    
+    setLoading(true)
   }, [])
 
   const reFetchData = (key: string, index: number) => {    
+    setLoading(false)
     fetch(uri + 'workshops').then(res => res.json()).then(res => {
       const temp_array = res.filter((el: { category: string; }) => el.category === key)
       setWorkshops(temp_array)      
     })
     setCategory(key)
     setActive(index)
+    setLoading(true)
   }
 
   const fetchAll = () => {
+    setLoading(false)
     setLoadmore(false)
     fetch(uri + 'workshops').then(res => res.json()).then(res => setWorkshops(res))
     setActive(5)
     setCategory('All')
+    setLoading(true)
   }
 
   return (
@@ -109,6 +115,9 @@ function Home() {
 
         </Col>
         <Col md={9}>
+          {
+            !loading&&<Spinner animation="border" variant="warning" />
+          }          
           <WorkShopCard workshops={workshops} loadmore={loadmore}/>
           {
             workshops.length > 9 && !loadmore &&<h6 style={styles.load_more_txt}><span style={styles.load_more} onClick={() => setLoadmore(true)}>Load More</span></h6>

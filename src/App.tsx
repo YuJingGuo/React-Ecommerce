@@ -31,6 +31,12 @@ const styles = {
   } as React.CSSProperties
 } 
 
+const NoMatchPage = () => {
+  return (
+    <h3 style={{padding: '100px 100px'}}>404 - Not found</h3>
+  );
+};
+
 function App() {
     
   const [ orders, setOrders ] = useState([])  
@@ -61,11 +67,11 @@ function App() {
           </Navbar>
 
           <Switch>
-            <Route path="/" component={Home} exact/>
-            {/* <Route path="/workshops/:id" component={WorkShopDetail} exact/> */}
+            <Route path="/" component={Home} exact/>            
             <Route path="/workshops/:id" render={(props) => (
               <WorkShopDetail fetchOrders={fetchOrders} {...props}/>
             )} exact/>
+            <Route component={NoMatchPage} />
           </Switch>
           
           <Footer />
